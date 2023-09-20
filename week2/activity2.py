@@ -14,15 +14,10 @@ class DirectedGraph():
 
         queue = [start_node]
         visited = set()
-
         while (len(queue) > 0):
             current = queue.pop()
             visited.add(current)
-            nodes = self._adjacency_list[current]
-            for node in nodes:
-                if node not in visited:
-                    queue.append(node)
-
+            queue.extend(filter(lambda node: node not in visited, self._adjacency_list[current]))
             print(f'{current}')
 
 
